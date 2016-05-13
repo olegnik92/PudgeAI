@@ -1,0 +1,9 @@
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\PudgeClient.exe.config
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\PudgeClient.exe
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\PudgeClient.pdb
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\CVARC.Core.dll
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\Infrastructure.dll
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\Pudge.dll
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.exe
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.pdb
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.csprojResolveAssemblyReference.cache

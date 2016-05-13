@@ -1,0 +1,121 @@
+Unable to load web settings from file. Load default (off)
+Multiplayer server: Server started
+network server: Server started
+Log server: Server started
+network server: Client accepted
+World initialization finished!
+World loaded
+Time is Up
+network server: Client accepted
+World initialization finished!
+World loaded
+Can't get command
+Time is Up
+network server: Client accepted
+World initialization finished!
+World loaded
+Exception: Удаленный хост принудительно разорвал существующее подключение.
+
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: Удаленный хост принудительно разорвал существующее подключение.
+
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: Удаленный хост принудительно разорвал существующее подключение.
+
+Time is Up
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+Time is Up
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Time is Up
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+Time is Up
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: Удаленный хост принудительно разорвал существующее подключение.
+
+Time is Up
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: Удаленный хост принудительно разорвал существующее подключение.
+
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: You have been disconnected from the server
+Time is Up
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: Удаленный хост принудительно разорвал существующее подключение.
+
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Exception: Удаленный хост принудительно разорвал существующее подключение.
+
+network server: Client accepted
+LOL
+World initialization finished!
+World loaded
+Time is Up
+network server: Client accepted
+World initialization finished!
+World loaded
+Time is Up
+GLOBAL EXIT
+network server: Server Exited
+Log server: Server Exited

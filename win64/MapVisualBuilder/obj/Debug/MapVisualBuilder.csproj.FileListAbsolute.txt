@@ -1,0 +1,10 @@
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\MapVisualBuilder.exe
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\MapVisualBuilder.pdb
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.csprojResolveAssemblyReference.cache
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.Form1.resources
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.Properties.Resources.resources
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.csproj.GenerateResource.Cache
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.exe
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.pdb
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\Newtonsoft.Json.dll
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\Newtonsoft.Json.xml
