@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.IO;
@@ -17,16 +18,18 @@ namespace MapVisualBuilder
             InitializeComponent();
             SaveFileDialog.FileOk += new CancelEventHandler(ExportGraph);
             OpenFileDialog.FileOk += new CancelEventHandler(ImportGraph);
+
+            LoadMap();
         }
 
         private byte[,] map;
         private GraphBuilder builder;
         private double wOffset = 0;
         private double hOffset = 0;
-        private void OpenJsonButton_Click(object sender, EventArgs e)
+        private void LoadMap()
         {
             var rasterisator = new MapRasterisator();
-            var mapInfo = new MapRawInfo(null);
+            var mapInfo = new MapRawInfo();
             wOffset = mapInfo.WidthOffset;
             hOffset = mapInfo.HeightOffset;
             map = rasterisator.Rastr(mapInfo);
@@ -88,14 +91,19 @@ namespace MapVisualBuilder
             edgeVertexBindingSource.ResetBindings(false);
         }
 
-        private int pixelSize = 3;
+        private int pixelSize = int.Parse(ConfigurationSettings.AppSettings["pixelSize"]);
         private SolidBrush treeBrush = new SolidBrush(Color.Green);
         private SolidBrush pointBrush = new SolidBrush(Color.Blue);
-        private int pointHalfSize = 5;
+        private int pointHalfSize = int.Parse(ConfigurationSettings.AppSettings["pointSize"]) / 2;
         private Pen edgePen = new Pen(Color.Blue, 2);
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private int InvertY(int y)
+        {
+            return Canvas.Height - y - pixelSize;
         }
 
         private void CanvasRefresh()
@@ -115,7 +123,7 @@ namespace MapVisualBuilder
                 {
                     if (map[x, y] == 1)
                     {
-                        driver.FillRectangle(treeBrush, x * pixelSize, y * pixelSize, pixelSize, pixelSize);
+                        driver.FillRectangle(treeBrush, x * pixelSize, InvertY(y * pixelSize), pixelSize, pixelSize);
                     }
                 }
             }
@@ -135,15 +143,15 @@ namespace MapVisualBuilder
                 {
                     pointBrush.Color = Color.Blue;
                 }
-                driver.FillEllipse(pointBrush, (int)((v.X - wOffset) * pixelSize) - pointHalfSize, (int)((v.Y - hOffset) * pixelSize) - pointHalfSize, 2 * pointHalfSize, 2 * pointHalfSize);
+                driver.FillEllipse(pointBrush, (int)((v.X - wOffset) * pixelSize) - pointHalfSize, InvertY((int)((v.Y - hOffset) * pixelSize) + pointHalfSize), 2 * pointHalfSize, 2 * pointHalfSize);
             });
 
             builder.Edges.ForEach(edge =>
             {
                 var v1 = builder.Vertices.First(v => v.ID == edge.Item1);
                 var v2 = builder.Vertices.First(v => v.ID == edge.Item2);
-                driver.DrawLine(edgePen, (int)((v1.X - wOffset) * pixelSize), (int)((v1.Y - hOffset) * pixelSize),
-                                         (int)((v2.X - wOffset) * pixelSize), (int)((v2.Y - hOffset) * pixelSize));
+                driver.DrawLine(edgePen, (int)((v1.X - wOffset) * pixelSize), InvertY((int)((v1.Y - hOffset) * pixelSize)),
+                                         (int)((v2.X - wOffset) * pixelSize), InvertY((int)((v2.Y - hOffset) * pixelSize)));
             });
 
             Canvas.BackgroundImage = drawBuffer;
@@ -156,7 +164,7 @@ namespace MapVisualBuilder
             var p = new Vertex
             {
                 X = (double)mouseE.X / pixelSize + wOffset,
-                Y = (double)mouseE.Y / pixelSize + hOffset
+                Y = -((double)mouseE.Y / pixelSize + hOffset)
             };
             if(mouseE.Button == MouseButtons.Left)
             {

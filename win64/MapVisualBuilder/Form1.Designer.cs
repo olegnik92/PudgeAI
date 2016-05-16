@@ -30,7 +30,6 @@
         {
             this.CanvasContainer = new System.Windows.Forms.Panel();
             this.Canvas = new System.Windows.Forms.Panel();
-            this.OpenJsonButton = new System.Windows.Forms.Button();
             this.OpenGraphButton = new System.Windows.Forms.Button();
             this.ExportButton = new System.Windows.Forms.Button();
             this.CurrentVertexComboBox = new System.Windows.Forms.ComboBox();
@@ -46,10 +45,6 @@
             this.TagTextBox = new System.Windows.Forms.TextBox();
             this.EdgedVertexComboBox = new System.Windows.Forms.ComboBox();
             this.IsEdgedCheckBox = new System.Windows.Forms.CheckBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.MapWidthTextBox = new System.Windows.Forms.TextBox();
-            this.MapHeightTextBox = new System.Windows.Forms.TextBox();
             this.OpenFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.DeleteCurrentVertexButton = new System.Windows.Forms.Button();
             this.SaveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -79,21 +74,11 @@
             this.Canvas.Click += new System.EventHandler(this.Canvas_Click);
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
             // 
-            // OpenJsonButton
-            // 
-            this.OpenJsonButton.Location = new System.Drawing.Point(12, 12);
-            this.OpenJsonButton.Name = "OpenJsonButton";
-            this.OpenJsonButton.Size = new System.Drawing.Size(66, 23);
-            this.OpenJsonButton.TabIndex = 0;
-            this.OpenJsonButton.Text = "Open Json";
-            this.OpenJsonButton.UseVisualStyleBackColor = true;
-            this.OpenJsonButton.Click += new System.EventHandler(this.OpenJsonButton_Click);
-            // 
             // OpenGraphButton
             // 
-            this.OpenGraphButton.Location = new System.Drawing.Point(84, 12);
+            this.OpenGraphButton.Location = new System.Drawing.Point(12, 12);
             this.OpenGraphButton.Name = "OpenGraphButton";
-            this.OpenGraphButton.Size = new System.Drawing.Size(76, 23);
+            this.OpenGraphButton.Size = new System.Drawing.Size(211, 23);
             this.OpenGraphButton.TabIndex = 1;
             this.OpenGraphButton.Text = "Open Graph";
             this.OpenGraphButton.UseVisualStyleBackColor = true;
@@ -101,9 +86,9 @@
             // 
             // ExportButton
             // 
-            this.ExportButton.Location = new System.Drawing.Point(166, 12);
+            this.ExportButton.Location = new System.Drawing.Point(12, 61);
             this.ExportButton.Name = "ExportButton";
-            this.ExportButton.Size = new System.Drawing.Size(58, 23);
+            this.ExportButton.Size = new System.Drawing.Size(212, 23);
             this.ExportButton.TabIndex = 2;
             this.ExportButton.Text = "Export";
             this.ExportButton.UseVisualStyleBackColor = true;
@@ -202,53 +187,21 @@
             // 
             this.EdgedVertexComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.EdgedVertexComboBox.FormattingEnabled = true;
-            this.EdgedVertexComboBox.Location = new System.Drawing.Point(15, 402);
+            this.EdgedVertexComboBox.Location = new System.Drawing.Point(12, 402);
             this.EdgedVertexComboBox.Name = "EdgedVertexComboBox";
-            this.EdgedVertexComboBox.Size = new System.Drawing.Size(209, 21);
+            this.EdgedVertexComboBox.Size = new System.Drawing.Size(212, 21);
             this.EdgedVertexComboBox.TabIndex = 14;
             // 
             // IsEdgedCheckBox
             // 
             this.IsEdgedCheckBox.AutoSize = true;
-            this.IsEdgedCheckBox.Location = new System.Drawing.Point(15, 429);
+            this.IsEdgedCheckBox.Location = new System.Drawing.Point(12, 429);
             this.IsEdgedCheckBox.Name = "IsEdgedCheckBox";
             this.IsEdgedCheckBox.Size = new System.Drawing.Size(68, 17);
             this.IsEdgedCheckBox.TabIndex = 15;
             this.IsEdgedCheckBox.Text = "Is Edged";
             this.IsEdgedCheckBox.UseVisualStyleBackColor = true;
             this.IsEdgedCheckBox.CheckedChanged += new System.EventHandler(this.IsEdgedCheckBox_CheckedChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(12, 79);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Map Width";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(12, 108);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(62, 13);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Map Height";
-            // 
-            // MapWidthTextBox
-            // 
-            this.MapWidthTextBox.Location = new System.Drawing.Point(83, 79);
-            this.MapWidthTextBox.Name = "MapWidthTextBox";
-            this.MapWidthTextBox.Size = new System.Drawing.Size(140, 20);
-            this.MapWidthTextBox.TabIndex = 19;
-            // 
-            // MapHeightTextBox
-            // 
-            this.MapHeightTextBox.Location = new System.Drawing.Point(83, 105);
-            this.MapHeightTextBox.Name = "MapHeightTextBox";
-            this.MapHeightTextBox.Size = new System.Drawing.Size(140, 20);
-            this.MapHeightTextBox.TabIndex = 20;
             // 
             // OpenFileDialog
             // 
@@ -266,9 +219,9 @@
             // 
             // RefreshButton
             // 
-            this.RefreshButton.Location = new System.Drawing.Point(12, 156);
+            this.RefreshButton.Location = new System.Drawing.Point(12, 132);
             this.RefreshButton.Name = "RefreshButton";
-            this.RefreshButton.Size = new System.Drawing.Size(75, 23);
+            this.RefreshButton.Size = new System.Drawing.Size(212, 23);
             this.RefreshButton.TabIndex = 23;
             this.RefreshButton.Text = "Refresh";
             this.RefreshButton.UseVisualStyleBackColor = true;
@@ -281,10 +234,6 @@
             this.ClientSize = new System.Drawing.Size(719, 545);
             this.Controls.Add(this.RefreshButton);
             this.Controls.Add(this.DeleteCurrentVertexButton);
-            this.Controls.Add(this.MapHeightTextBox);
-            this.Controls.Add(this.MapWidthTextBox);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.IsEdgedCheckBox);
             this.Controls.Add(this.EdgedVertexComboBox);
             this.Controls.Add(this.TagTextBox);
@@ -300,7 +249,6 @@
             this.Controls.Add(this.CurrentVertexComboBox);
             this.Controls.Add(this.ExportButton);
             this.Controls.Add(this.OpenGraphButton);
-            this.Controls.Add(this.OpenJsonButton);
             this.Controls.Add(this.CanvasContainer);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -314,7 +262,6 @@
 
         private System.Windows.Forms.Panel CanvasContainer;
         private System.Windows.Forms.Panel Canvas;
-        private System.Windows.Forms.Button OpenJsonButton;
         private System.Windows.Forms.Button OpenGraphButton;
         private System.Windows.Forms.Button ExportButton;
         private System.Windows.Forms.ComboBox CurrentVertexComboBox;
@@ -330,10 +277,6 @@
         private System.Windows.Forms.TextBox TagTextBox;
         private System.Windows.Forms.ComboBox EdgedVertexComboBox;
         private System.Windows.Forms.CheckBox IsEdgedCheckBox;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox MapWidthTextBox;
-        private System.Windows.Forms.TextBox MapHeightTextBox;
         private System.Windows.Forms.OpenFileDialog OpenFileDialog;
         private System.Windows.Forms.Button DeleteCurrentVertexButton;
         private System.Windows.Forms.SaveFileDialog SaveFileDialog;

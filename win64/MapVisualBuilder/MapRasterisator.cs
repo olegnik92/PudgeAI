@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -9,9 +10,9 @@ using System.Threading.Tasks;
 namespace MapVisualBuilder
 {
     class MapRasterisator
-    {        
-        public double CellSize = 1;
-        public double MinDistance = 18;// half of pudge size + half tree size
+    {
+        public double CellSize = double.Parse(ConfigurationSettings.AppSettings["cellSize"]);
+        public double MinDistance = double.Parse(ConfigurationSettings.AppSettings["minDistance"]);// half of pudge size + half tree size
 
         public byte[,] Rastr(MapRawInfo mapData)
         {

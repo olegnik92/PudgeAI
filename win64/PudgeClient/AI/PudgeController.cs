@@ -1,4 +1,5 @@
-﻿using CVARC.V2;
+﻿using AIRLab.Mathematics;
+using CVARC.V2;
 using Pudge;
 using Pudge.Player;
 using Pudge.World;
@@ -167,5 +168,19 @@ namespace PudgeClient.AI
             this.sensorsData = newSensorsData;
         }
 
+        public double GetInvisibleTime()
+        {
+            if(sensorsData.IsDead)
+            {
+                return 0;
+            }
+            var invisibleEffect = sensorsData.Events.FirstOrDefault(e => e.Event == PudgeEvent.Invisible);
+            if(invisibleEffect == null)
+            {
+                return 0;
+            }
+
+            return invisibleEffect.Duration - (sensorsData.WorldTime - invisibleEffect.Start);
+        }
     }
 }

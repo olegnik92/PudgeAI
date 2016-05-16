@@ -56,17 +56,17 @@
     <Compile Include="AI\GameStrategy.cs" />
     <Compile Include="AI\Helper.cs" />
     <Compile Include="AI\PudgeController.cs" />
+    <Compile Include="AI\PudgeExtentions.cs" />
     <Compile Include="AI\PudgePath.cs" />
+    <Compile Include="AI\SlardarHelper.cs" />
     <Compile Include="AI\Strategy0.cs" />
     <Compile Include="AI\Strategy1.cs" />
     <Compile Include="Map\MapGraph.cs" />
-    <Compile Include="AI\MapGridCell.cs" />
-    <Compile Include="AI\MapObject.cs" />
-    <Compile Include="Map\DiscreteArea.cs" />
     <Compile Include="Map\MapSeed.cs" />
-    <Compile Include="Map\MapTreesData.cs" />
-    <Compile Include="Map\MapExporter.cs" />
     <Compile Include="Map\MapVertex.cs" />
+    <Compile Include="Priority_Queue\FastPriorityQueue.cs" />
+    <Compile Include="Priority_Queue\FastPriorityQueueNode.cs" />
+    <Compile Include="Priority_Queue\IPriorityQueue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

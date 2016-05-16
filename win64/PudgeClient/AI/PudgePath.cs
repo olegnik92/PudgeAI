@@ -1,4 +1,5 @@
-﻿using PudgeClient.Map;
+﻿using Priority_Queue;
+using PudgeClient.Map;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,27 +10,27 @@ namespace PudgeClient.AI
 {
     class PudgePath
     {
-        private List<int> vertices;
-        private Dictionary<int, bool> vertexReachMap;
+        public List<int> Vertices;
+        public Dictionary<int, bool> VertexReachMap;
         public PudgePath(List<int> vertices)
         {
-            this.vertices = vertices;
-            vertexReachMap = new Dictionary<int, bool>();
+            this.Vertices = vertices;
+            VertexReachMap = new Dictionary<int, bool>();
             vertices.ForEach(v =>
             {
-                vertexReachMap[v] = false;
+                VertexReachMap[v] = false;
             });
         }
 
         public void VertexReached(int vertex)
         {
-            vertexReachMap[vertex] = true;
+            VertexReachMap[vertex] = true;
         }
 
         public bool IsEqualTo(PudgePath path)
         {
             PudgePath longPath, shortPath;
-            if (path.vertices.Count > this.vertices.Count)
+            if (path.Vertices.Count > this.Vertices.Count)
             {
                 longPath = path;
                 shortPath = this;
@@ -40,13 +41,13 @@ namespace PudgeClient.AI
                 shortPath = path;
             }
 
-            var lenDif = longPath.vertices.Count - shortPath.vertices.Count;
-            for (int i = longPath.vertices.Count - 1; i > -1; i--)
+            var lenDif = longPath.Vertices.Count - shortPath.Vertices.Count;
+            for (int i = longPath.Vertices.Count - 1; i > -1; i--)
             {
                 int j = i - lenDif;
                 if(j < 0)
                 {
-                    if (longPath.vertexReachMap[longPath.vertices[i]])
+                    if (longPath.VertexReachMap[longPath.Vertices[i]])
                     {
                         continue;
                     }
@@ -54,8 +55,8 @@ namespace PudgeClient.AI
                     return false;
                 }
           
-                if(longPath.vertices[i] != shortPath.vertices[j]
-                    && (!longPath.vertexReachMap[longPath.vertices[i]] || !shortPath.vertexReachMap[shortPath.vertices[j]]))
+                if(longPath.Vertices[i] != shortPath.Vertices[j]
+                    && (!longPath.VertexReachMap[longPath.Vertices[i]] || !shortPath.VertexReachMap[shortPath.Vertices[j]]))
                 {
                     return false;
                 }
@@ -66,30 +67,42 @@ namespace PudgeClient.AI
         }
 
 
-        public double Length
+        public double Count
         {
             get
             {
-                return vertices.Count;
+                return Vertices.Count;
             }
+        }
+
+        public double GetLength(MapGraph map)
+        {
+            double len = 0;
+            for (int i = 1; i < Vertices.Count; i++ )
+            {
+                len += Math.Sqrt(Helper.SqrDist(map.Vertices[Vertices[i]].X, map.Vertices[Vertices[i]].Y,
+                                                map.Vertices[Vertices[i - 1]].X, map.Vertices[Vertices[i - 1]].Y));
+            }
+
+            return len;
         }
 
         public int GetCurrentTargetIndex()
         {
-            for (int i = 0; i < vertices.Count; i++ )
+            for (int i = 0; i < Vertices.Count; i++ )
             {
-                if(!vertexReachMap[vertices[i]])
+                if(!VertexReachMap[Vertices[i]])
                 {
-                    return vertices[i];
+                    return Vertices[i];
                 }
             }
 
-            return vertices[vertices.Count - 1];
+            return Vertices[Vertices.Count - 1];
         }
 
         public bool IsPathDone()
         {
-            return vertices.All(v => vertexReachMap[v]);
+            return Vertices.All(v => VertexReachMap[v]);
         }
 
 
@@ -100,17 +113,17 @@ namespace PudgeClient.AI
             searchMapCahce = map.Vertices.Select(v => (List<int>)(null)).ToList();
             Parallel.For(0, map.Vertices.Count, start =>
             {
-                searchMapCahce[start] = BFSSearch(start, map);
+                searchMapCahce[start] = DijkstraSearch(start, map);
             });
         }
 
 
-        public static List<PudgePath> FindPath(IEnumerable<int> targets, int start, MapGraph map)
+        public static List<PudgePath> FindPath(IEnumerable<int> targets, int start, MapGraph map, List<double> dangerMap = null)
         {
-            List<int> searchMap; 
-            if(searchMapCahce.Count < map.Vertices.Count || searchMapCahce[start] == null)
+            List<int> searchMap;
+            if (searchMapCahce.Count < map.Vertices.Count || searchMapCahce[start] == null || dangerMap != null)
             {
-                searchMap = BFSSearch(start, map);
+                searchMap = DijkstraSearch(start, map, dangerMap);
             }
             else
             {
@@ -140,6 +153,44 @@ namespace PudgeClient.AI
 
                     searchMap[vInd] = vertexIndex;
                     queue.Enqueue(vInd);
+                });
+            }
+
+            return searchMap;
+        }
+
+        private class QueueNode:FastPriorityQueueNode
+        {
+            public int Index;
+        }
+
+        private static List<int> DijkstraSearch(int start, MapGraph map, List<double> dangerMap = null)
+        {
+            var queue = new FastPriorityQueue<QueueNode>(map.Vertices.Count);
+            var nodesList = new List<QueueNode>(map.Vertices.Count);
+            for(int i = 0; i < map.Vertices.Count; i++)
+            {
+                var node = new QueueNode { Index = i };
+                queue.Enqueue(node, i == start ? 0 : double.PositiveInfinity);
+                nodesList.Add(node);
+            }
+            var searchMap = Enumerable.Range(0, map.Vertices.Count)
+                .Select(i => -1).ToList();
+
+            while (queue.Count > 0)
+            {
+                var currentNode = queue.Dequeue();
+                var curV = map.Vertices[currentNode.Index];
+                map.AdjacencyList[currentNode.Index].ForEach(vInd =>
+                {
+                    var v = map.Vertices[vInd];
+                    var newPriority =  currentNode.Priority + Math.Sqrt(Helper.SqrDist(v.X, v.Y, curV.X, curV.Y));
+                    newPriority += dangerMap == null ? 0 : dangerMap[map.IndexOf(curV)];
+                    if(nodesList[vInd].Priority > newPriority)
+                    {
+                        searchMap[vInd] = currentNode.Index;
+                        queue.UpdatePriority(nodesList[vInd], newPriority);
+                    }
                 });
             }
 

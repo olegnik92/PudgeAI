@@ -8,3 +8,5 @@ D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Debug\MapVisua
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.pdb
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\Newtonsoft.Json.dll
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\Newtonsoft.Json.xml
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\MapVisualBuilder.exe.config
+D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\trees.json

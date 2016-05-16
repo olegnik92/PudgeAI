@@ -18,7 +18,6 @@ namespace PudgeClient.Map
         public int IndexOf(MapVertex vertex)
         {
             return vertex.ID;
-            //return Vertices.IndexOf(vertex);
         }
 
     }
