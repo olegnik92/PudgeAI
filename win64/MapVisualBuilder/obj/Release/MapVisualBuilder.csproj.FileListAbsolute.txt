@@ -10,3 +10,6 @@ D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Release\MapVis
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Release\MapVisualBuilder.exe
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Release\MapVisualBuilder.pdb
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\obj\Release\MapVisualBuilder.csprojResolveAssemblyReference.cache
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\bin\Release\MapVisualBuilder.exe.config
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\obj\Release\MapVisualBuilder.exe
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\obj\Release\MapVisualBuilder.pdb

@@ -10,3 +10,15 @@ D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\Newtonso
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\Newtonsoft.Json.xml
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\MapVisualBuilder.exe.config
 D:\myfiles\projects\KontureGame\round1\win64\MapVisualBuilder\bin\Debug\trees.json
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\bin\Debug\MapVisualBuilder.exe.config
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.exe
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.pdb
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\bin\Debug\trees.json
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\bin\Debug\MapVisualBuilder.exe
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\bin\Debug\MapVisualBuilder.pdb
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\bin\Debug\Newtonsoft.Json.dll
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\bin\Debug\Newtonsoft.Json.xml
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.csprojResolveAssemblyReference.cache
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.Form1.resources
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.Properties.Resources.resources
+C:\common\coding\konturgame\PudgeAI\win64\MapVisualBuilder\obj\Debug\MapVisualBuilder.csproj.GenerateResource.Cache

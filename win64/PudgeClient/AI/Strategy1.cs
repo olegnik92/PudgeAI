@@ -1,4 +1,5 @@
 ﻿using AIRLab.Mathematics;
+using CVARC.V2;
 using Pudge;
 using Pudge.ClientClasses;
 using Pudge.Player;
@@ -48,6 +49,7 @@ namespace PudgeClient.AI
             verticesProfit = map.Vertices.Select(v => v.Profit).ToList();
             verticesDanger = map.Vertices.Select(v => v.Danger).ToList();
             importantTargetsList = Enumerable.Range(0, map.Vertices.Count).Where(v => verticesProfit[v] > 0).ToList();
+            pudgePrevLocation = pudge.Location;
         }
 
         public override void Run()
@@ -69,7 +71,6 @@ namespace PudgeClient.AI
                     continue;
                 }
 
-                //todo обработка негативных эффектов !!!!!!!
                 if (pudge.SensorsData.Map.Heroes.Count > 0)
                 {
                     var enemy = pudge.SensorsData.Map.Heroes.First();
@@ -88,6 +89,11 @@ namespace PudgeClient.AI
                             continue;
                         }
                     }
+                }
+
+                if (LockMovementControl())
+                {
+                    continue;
                 }
 
                 if (VipStrategy())
@@ -124,6 +130,7 @@ namespace PudgeClient.AI
                 }
 
                 pudge.Sleep();
+                sameLocationCounter = 0;
             }
         }
 
@@ -262,6 +269,7 @@ namespace PudgeClient.AI
             if (pudge.MoveTo(vipTarget.X, vipTarget.Y))
             {
                 vipTarget = null;
+                currentPath = null;
             }
             return true;
         }
@@ -310,6 +318,45 @@ namespace PudgeClient.AI
             return false;
         }
 
+        private LocatorItem pudgePrevLocation;
+        private int sameLocationCounter = 0;
+        private bool LockMovementControl()
+        {
+            var curLoc = pudge.Location;
+            if((Math.Abs(pudgePrevLocation.X - curLoc.X) > 3) 
+                || (Math.Abs(pudgePrevLocation.Y - curLoc.Y) > 3)
+                || (Math.Abs(pudgePrevLocation.Angle - curLoc.Angle) > 5))
+            {
+
+                sameLocationCounter = 0;
+                pudgePrevLocation = curLoc;
+                return false;
+            }
+            pudgePrevLocation = curLoc;
+            sameLocationCounter++;
+            if(sameLocationCounter < 10)
+            {
+                return false;
+            }
+
+            if (pudge.IsHookReady())
+            {
+                pudge.Hook();
+                sameLocationCounter = 0;
+                return true;
+            }
+            else if (currentPath != null)
+            {
+                vipTarget = map.Vertices[currentPath.GetPrevTargetIndex()];
+            }
+            else
+            {
+                vipTarget = ClosestVertex;
+            }
+
+            return false;
+        }
+
         private RetreatPathCache retreatPathCahce = null;
         private bool Retreat(double pudgeX, double pudgeY, double enemyX, double enemyY)
         {
@@ -319,7 +366,7 @@ namespace PudgeClient.AI
             }
 
             var curTargetInd = currentPath.GetCurrentTargetIndex();
-            var prevIndex = currentPath.Vertices[Math.Max(currentPath.Vertices.IndexOf(curTargetInd) - 1, 0)];
+            var prevIndex = currentPath.GetPrevTargetIndex(curTargetInd);
             verticesDanger[curTargetInd] = 1000;
             lastDangerUpdateTime = pudge.SensorsData.WorldTime;
 

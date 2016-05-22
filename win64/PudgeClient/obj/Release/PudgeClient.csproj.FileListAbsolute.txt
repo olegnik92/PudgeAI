@@ -7,3 +7,12 @@ D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\Pudge.dll
 D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.exe
 D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.pdb
 D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.csprojResolveAssemblyReference.cache
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\bin\Release\PudgeClient.exe.config
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\obj\Release\PudgeClient.exe
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\obj\Release\PudgeClient.pdb
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\bin\Release\PudgeClient.exe
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\bin\Release\PudgeClient.pdb
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\bin\Release\CVARC.Core.dll
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\bin\Release\Infrastructure.dll
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\bin\Release\Pudge.dll
+C:\common\coding\konturgame\PudgeAI\win64\PudgeClient\obj\Release\PudgeClient.csprojResolveAssemblyReference.cache

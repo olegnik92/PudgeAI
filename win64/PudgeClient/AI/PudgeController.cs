@@ -17,7 +17,7 @@ namespace PudgeClient.AI
         public const double MoveEps = 1;
         public const double RotEps = 2;
         public const double MoveStep = 10;
-        public const double RotStep = 15;
+        public const double RotStep = 30;
 
 
         private PudgeClient<PudgeSensorsData> client;
@@ -80,6 +80,25 @@ namespace PudgeClient.AI
             client.Rotate(Math.Sign(dif) * Math.Min(Math.Abs(dif), RotStep));
             return false;
         }
+
+
+        public bool Hook()
+        {
+            if (sensorsData.IsDead)
+            {
+                return false;
+            }
+
+            if (!IsHookReady())
+            {
+                return false;
+            }
+
+
+            client.Hook();
+            return true;
+        }
+
 
         public bool HookTo(double x, double y)
         {

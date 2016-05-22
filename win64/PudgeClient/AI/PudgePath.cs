@@ -100,6 +100,17 @@ namespace PudgeClient.AI
             return Vertices[Vertices.Count - 1];
         }
 
+        public int GetPrevTargetIndex(int curTargetIndex)
+        {
+            var prevIndex = Vertices[Math.Max(Vertices.IndexOf(curTargetIndex) - 1, 0)];
+            return prevIndex;
+        }
+
+        public int GetPrevTargetIndex()
+        {
+            return GetPrevTargetIndex(GetCurrentTargetIndex());
+        }
+
         public bool IsPathDone()
         {
             return Vertices.All(v => VertexReachMap[v]);
