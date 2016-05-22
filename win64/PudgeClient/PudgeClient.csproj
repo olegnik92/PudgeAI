@@ -58,6 +58,7 @@
     <Compile Include="AI\PudgeController.cs" />
     <Compile Include="AI\PudgeExtentions.cs" />
     <Compile Include="AI\PudgePath.cs" />
+    <Compile Include="AI\RetreatPathCache.cs" />
     <Compile Include="AI\SlardarHelper.cs" />
     <Compile Include="AI\Strategy0.cs" />
     <Compile Include="AI\Strategy1.cs" />

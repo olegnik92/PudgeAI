@@ -6,3 +6,4 @@ D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\Infrastruct
 D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\bin\Release\Pudge.dll
 D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.exe
 D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.pdb
+D:\myfiles\projects\KontureGame\round1\win64\PudgeClient\obj\Release\PudgeClient.csprojResolveAssemblyReference.cache

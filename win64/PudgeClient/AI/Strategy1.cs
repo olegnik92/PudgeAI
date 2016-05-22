@@ -6,6 +6,7 @@ using Pudge.Sensors.Map;
 using PudgeClient.Map;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace PudgeClient.AI
 {
     class Strategy1: GameStrategy
     {
-
+        private Stopwatch watch = new Stopwatch();
         private const double runesMinDistance = 10;
 
         private MapVertex currentTarget = null;
@@ -80,14 +81,16 @@ namespace PudgeClient.AI
                             continue;
                         }
                     }
-                    else if (pudge.IsHookReady())
-                    {                     
-                        pudge.HookTo(enemy.Location.X, enemy.Location.Y);
-                        continue;
+                    else
+                    {
+                        if (EnemyPudgeStrategy(enemy))
+                        {
+                            continue;
+                        }
                     }
                 }
 
-                if (RetreatStrategy())
+                if (VipStrategy())
                 {
                     continue;
                 }
@@ -221,6 +224,7 @@ namespace PudgeClient.AI
             {
                 verticesDanger = map.Vertices.Select(v => v.Danger).ToList();
                 lastDangerUpdateTime = pudge.SensorsData.WorldTime;
+                retreatPathCahce = null;
             }
 
             if (!pudge.SensorsData.IsDead)
@@ -244,33 +248,25 @@ namespace PudgeClient.AI
                     verticesProfit[index] = 0;
                 }
             });
-
-            //обработка видимых рун
-            //pudge.SensorsData.Map.Runes.ForEach(rune =>
-            //{
-            //    var vertex = Helper.GetСlosestVertex(map, rune.Location.X, rune.Location.Y);
-            //    verticesProfit[map.IndexOf(vertex)] = rune.Size == RuneSize.Normal ? 10 : 20;
-            //});
         }
 
 
-        private MapVertex retreatTarget = null;
-        private bool RetreatStrategy()
+        private MapVertex vipTarget = null;
+        private bool VipStrategy()
         {
-            if(retreatTarget == null)
+            if(vipTarget == null)
             {
                 return false;
             }
 
-            if (pudge.MoveTo(retreatTarget.X, retreatTarget.Y))
+            if (pudge.MoveTo(vipTarget.X, vipTarget.Y))
             {
-                retreatTarget = null;
+                vipTarget = null;
             }
             return true;
         }
 
 
-        Tuple<int, int, PudgePath> retreatCache;
         private bool SlardarStrategy(HeroData slardar)
         {
             if (SlardarHelper.IsUnderAttack(pudge.Location, slardar.Location, slardar.Angle) && pudge.GetInvisibleTime() > 2)
@@ -291,24 +287,58 @@ namespace PudgeClient.AI
                 var angleDif = Helper.GetAngleDif(pudge.Location.Angle, pudge.GetTargetAngle(slardar.Location.X, slardar.Location.Y));
                 if(Math.Abs(angleDif) < 60)
                 {
-                    var curTargetInd = currentPath.GetCurrentTargetIndex();
-                    var prevIndex = currentPath.Vertices[Math.Max(currentPath.Vertices.IndexOf(curTargetInd) - 1, 0)];
-                    verticesDanger[curTargetInd] = 1000;
-                    lastDangerUpdateTime = pudge.SensorsData.WorldTime;
-
-                    bool isNeedUpdate;
-                    lastProfitHash = double.NegativeInfinity;
-                    closestVertex = map.Vertices[prevIndex];
-                    var newPath = FindBestPath(out isNeedUpdate, verticesDanger);
-                    ChangeCurrentPath(newPath);
-                }
-                else
-                {
-                    
+                    Retreat(pudge.Location.X, pudge.Location.Y, slardar.Location.X, slardar.Location.Y);
                 }
             }
 
             return false;
+        }
+
+
+        private bool EnemyPudgeStrategy(HeroData enemyPudge)
+        {
+            if(pudge.IsHookReady())
+            {
+                pudge.HookToWithCorrection(enemyPudge.Location.X, enemyPudge.Location.Y, PudgeRules.Current.MovementVelocity);
+                return true;
+            }
+            else
+            {
+                Retreat(pudge.Location.X, pudge.Location.Y, enemyPudge.Location.X, enemyPudge.Location.Y);
+            }
+
+            return false;
+        }
+
+        private RetreatPathCache retreatPathCahce = null;
+        private bool Retreat(double pudgeX, double pudgeY, double enemyX, double enemyY)
+        {
+            if (retreatPathCahce != null && retreatPathCahce.IsSuitable(pudgeX, pudgeY, enemyX, enemyY))
+            {
+                return false;
+            }
+
+            var curTargetInd = currentPath.GetCurrentTargetIndex();
+            var prevIndex = currentPath.Vertices[Math.Max(currentPath.Vertices.IndexOf(curTargetInd) - 1, 0)];
+            verticesDanger[curTargetInd] = 1000;
+            lastDangerUpdateTime = pudge.SensorsData.WorldTime;
+
+            bool isNeedUpdate;
+            lastProfitHash = double.NegativeInfinity;
+            closestVertex = map.Vertices[prevIndex];
+            var newPath = FindBestPath(out isNeedUpdate, verticesDanger);
+            ChangeCurrentPath(newPath);
+
+            retreatPathCahce = new RetreatPathCache
+            {
+                PudgeX = pudgeX,
+                PudgeY = pudgeY,
+                EnemyX = enemyX,
+                EnemyY = enemyY,
+                RetreatPath = newPath
+            };
+
+            return true;
         }
     }
 }
