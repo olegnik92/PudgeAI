@@ -25,6 +25,7 @@ namespace PudgeClient.AI
         public void VertexReached(int vertex)
         {
             VertexReachMap[vertex] = true;
+            currentTargetIndexInInnerList = currentTargetIndexInInnerList + 1;
         }
 
         public bool IsEqualTo(PudgePath path)
@@ -87,11 +88,13 @@ namespace PudgeClient.AI
             return len;
         }
 
+        private int currentTargetIndexInInnerList = 0;
         public int GetCurrentTargetIndex()
         {
-            for (int i = 0; i < Vertices.Count; i++ )
+            return Vertices[Math.Min(currentTargetIndexInInnerList, Vertices.Count - 1)];
+            for (int i = 0; i < Vertices.Count; i++)
             {
-                if(!VertexReachMap[Vertices[i]])
+                if (!VertexReachMap[Vertices[i]])
                 {
                     return Vertices[i];
                 }
@@ -104,16 +107,22 @@ namespace PudgeClient.AI
         {
             var prevIndex = Vertices[Math.Max(Vertices.IndexOf(curTargetIndex) - 1, 0)];
             return prevIndex;
+           
+           // return GetPrevTargetIndex();
         }
 
         public int GetPrevTargetIndex()
         {
             return GetPrevTargetIndex(GetCurrentTargetIndex());
+            //var prevIndex = Vertices[Math.Max(Math.Min(currentTargetIndexInInnerList, Vertices.Count - 1) - 1, 0)];
+            //return prevIndex;
         }
 
         public bool IsPathDone()
         {
-            return Vertices.All(v => VertexReachMap[v]);
+            return VertexReachMap[Vertices[Vertices.Count - 1]];
+           // return Vertices.All(v => VertexReachMap[v]);
+           // return currentTargetIndexInInnerList > (Vertices.Count - 1);
         }
 
 

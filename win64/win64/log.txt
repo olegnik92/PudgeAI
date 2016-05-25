@@ -1,65 +1,12 @@
 Unable to load web settings from file. Load default (off)
-Multiplayer server: Server started
 network server: Server started
+Multiplayer server: Server started
 Log server: Server started
-World initialization finished!
-World loaded
-Time is Up
-network server: Client accepted
-World initialization finished!
-World loaded
-Exception: You have been disconnected from the server
-network server: Client accepted
-World initialization finished!
-World loaded
-Exception: You have been disconnected from the server
-network server: Client accepted
-World initialization finished!
-World loaded
-Exception: You have been disconnected from the server
-network server: Client accepted
-World initialization finished!
-World loaded
-Exception: You have been disconnected from the server
-network server: Client accepted
-World initialization finished!
-World loaded
-Can't get command
-network server: Client accepted
-World initialization finished!
-World loaded
-Can't get command
-Time is Up
-network server: Client accepted
-World initialization finished!
-World loaded
-Can't get command
-Time is Up
 network server: Client accepted
 World initialization finished!
 World loaded
 Time is Up
-network server: Client accepted
-World initialization finished!
-World loaded
-Can't get command
-network server: Client accepted
-World initialization finished!
-World loaded
-Time is Up
-network server: Client accepted
-World initialization finished!
-World loaded
-Time is Up
-network server: Client accepted
-World initialization finished!
-World loaded
-Time is Up
-network server: Client accepted
-World initialization finished!
-World loaded
-Exception: Удаленный хост принудительно разорвал существующее подключение.
-
-Time is Up
-network server: Client accepted
-network server: error while handle player: You have been disconnected from the server
+GLOBAL EXIT
+Log server: Server Exited
+network server: Server Exited
+Multiplayer server: Server Exited

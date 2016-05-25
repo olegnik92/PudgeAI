@@ -53,7 +53,7 @@ namespace PudgeClient
 #if DEBUG
             client.SensorDataReceived += Print;
 #endif
-            var sensorsData  = client.Configurate(ip, port, CvarcTag, isOnLeftSide: false, speedUp: false, operationalTimeLimit: 5, seed: 1017);
+            var sensorsData  = client.Configurate(ip, port, CvarcTag, isOnLeftSide: true, speedUp: false, operationalTimeLimit: 4, seed: 2110);
             var pudge = new AI.PudgeController(client, sensorsData);
             var strategy = new Strategy1(pudge, map);
 

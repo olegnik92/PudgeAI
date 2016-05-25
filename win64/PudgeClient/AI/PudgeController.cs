@@ -16,8 +16,8 @@ namespace PudgeClient.AI
         public const double PudgeSize = 20;
         public const double MoveEps = 1;
         public const double RotEps = 2;
-        public const double MoveStep = 10;
-        public const double RotStep = 30;
+        public const double MoveStep = 15;
+        public const double RotStep = 90;
 
 
         private PudgeClient<PudgeSensorsData> client;
@@ -171,7 +171,7 @@ namespace PudgeClient.AI
 
         public void Sleep()
         {
-            Wait(0.1);
+            Wait(0.2);
         }
 
         public LocatorItem Location
